@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+  <div class="container">
+  <h1>Registre Usuaris</h1>
+  {{form_start (form)}}
+  {{form_widget (form)}}
+  {{form_end (form)}}
+
+  {% for message in app.session.flashbag().get('message') %}
+    {{message}}
+  {% endfor %}
+    </div>
+{% endblock %}

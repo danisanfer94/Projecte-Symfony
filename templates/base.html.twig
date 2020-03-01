@@ -3,9 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{asset('assets/main.css')}}" type="text/css">
+        {% endblock %}
     </head>
     <body>
+        <header>
+          <h2>Projecte M7-UF3-TASQUES SYMFONY</h2>
+          <nav>
+            <ul>
+              {% if app.user %}
+              <li> <a href="/">Inici</a> </li>
+              <li> <a href="/listTasques">Les meves tasques</a> </li>
+              <li> <a href="/crear-tasques">Crear tasca</a> </li>
+              <div class="floatright">
+              <li class="username">{{app.user.name}} {{app.user.surname}}</li>
+              <li> <a href="/logout">Logout</a> </li>
+              </div>
+              {% else %}
+              <li> <a href="/login">Login</a> </li>
+              <li> <a href="/registre">Registre</a> </li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% if app.user %}
+
+          {% endif %}
+        </header>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

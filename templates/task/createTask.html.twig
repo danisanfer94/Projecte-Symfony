@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+  <div class="crear-task">
+  {% if edit %}
+    <h2>Editar Tasca</h2>
+  {% else %}
+    <h2>Crear Tasques</h2>
+  {% endif %}
+  {{form_start (form)}}
+  {{form_widget (form)}}
+  {{form_end (form)}}
+
+  {% for message in app.session.flashbag().get('message') %}
+    {{message}}
+  {% endfor %}
+    </div>
+{% endblock %}

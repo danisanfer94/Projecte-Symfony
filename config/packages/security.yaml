@@ -1,14 +1,30 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+      App\Entity\User:
+        algorithm: 'bcrypt'
+        cost: 4
+
     providers:
         users_in_memory: { memory: null }
+        proveidor:
+          entity:
+            class: App\Entity\User
+            property: 'email'
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: lazy
-            provider: users_in_memory
+            form_login:
+              login_path: login
+              check_path: login
+              provider: proveidor
+            logout:
+              path: /logout
+              target: /login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -20,4 +36,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/task-details, roles: ROLE_USER }
+        - { path: ^/crear-tasques, roles: ROLE_USER }
+        - { path: ^/task-edit, roles: ROLE_USER }
+        - { path: ^/task-delete, roles: ROLE_USER }
+        - { path: ^/listTasques, roles: ROLE_USER }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TaskController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="task-list">
+  <h2>Les meves Tasques</h2>
+
+    {% if tasques|length > 0 %}
+      <table>
+        <tr>
+          <th>Tasca</th>
+          <th>Prioritat</th>
+          <th>Hores Pressupostades</th>
+          <th>Accions</th>
+        </tr>
+        {% for i in tasques %}
+          <tr>
+            <td>{{i.title}}</td>
+            <td>{{i.priority}}</td>
+            <td>{{i.hours}}</td>
+            <td>
+              {% if i.user.id == userid %}
+                <a href="/task-details/{{i.id}}">Show</a>
+                <a href="/task-edit/{{i.id}}">Edit</a>
+                <a href="/task-delete/{{i.id}}">Delete</a>
+              {% else %}
+                <a href="/task-details/{{i.id}}">Show</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+        <p>No hi han tasques</p>
+      {% endif %}
+</div>
+
+{% endblock %}

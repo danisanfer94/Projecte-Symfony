@@ -1,3 +1,42 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /
+   controller: App\Controller\UserController::index
+
+# get-mails:
+#   path: "/get-mails"
+#   controller: App\Controller\TaskController::getMails
+#
+# get-taskes:
+#   path: "/get-tasques"
+#   controller: App\Controller\UserController::getTasques
+
+detallTaska:
+  path: "/task-details/{taskid}"
+  controller: App\Controller\TaskController::detalls
+
+crearTaskes:
+  path: "/crear-tasques"
+  controller: App\Controller\TaskController::creation
+
+editarTaskes:
+  path: "/task-edit/{taskid}"
+  controller: App\Controller\TaskController::edit
+
+deleteTasca:
+  path: "/task-delete/{taskid}"
+  controller: App\Controller\TaskController::delete
+
+listtaskes:
+  path: "/listTasques"
+  controller: App\Controller\TaskController::llistarTasques
+
+registre:
+  path: "/registre"
+  controller: App\Controller\UserController::crear
+
+login:
+  path: "/login"
+  controller: App\Controller\UserController::login
+
+logout:
+  path: "/logout"
